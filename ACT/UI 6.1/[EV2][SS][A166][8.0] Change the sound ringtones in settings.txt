@@ -1,0 +1,120 @@
+﻿*Description:
+*P250202-00395_I want to change the sound of my phone_Crash in sound picker comes when the applied ringtone file is deleted from saved locations and ringtone picker is unable to find the data associated with it.
+
+$SPenErrorDetect false
+$ResetErrorDetect true
+$AllowDeepSleep true
+$StorageFullDetect true
+$FullcapInterval 60
+$BatteryChargeOption false
+$ChargeRepeatCnt 400
+$ChargeEnableLv 15
+$ChargeDiableLv 100
+$BatteryChargeFull false
+$StopLvBattery 100
+$BatteryEndLevel 2
+$PauseCharge false
+$BatteryDropDetectLv 2
+$AutoStart false
+$ACTWatchCat false
+$ACTWatchCatInterval 120000
+$ErrorDetect false
+$IgnoreError true
+$ShakeAction true
+$ContinueTestWhenErrorDetected true
+$TopLayerScriptView true
+$DelayTimeAfterReboot 5000
+$PointerLocation false
+$SaveScreenshot true
+$SaveResultAlways true
+$USBWarning false
+$LcdErrorDetect 10
+$ABCFaultDetect true
+$IgnoreBootTimeFail true
+$PageFaultDetect true
+$isWaitTimeWhenFullChargeOption false
+$ShowChargeType false
+$AutomationReboot true
+$ShowScriptFileName true
+$ShakeActionSensitivity 1500
+$RebootWhenErrorOccurs false
+$NotificationCheck false
+$ThermistorDetect true
+$TAWarning false
+$SpenSaveAlways false
+$WaitChargeOption false
+$CloseActSessions true
+$TemperatureDetection 43
+$ANRDetect false
+$CameraErrorDetect true
+$CrashDetect true
+$SamsungPKGErrorDetect true
+$ShakeActionBrightness 130
+$WifiFwCrashDetect true
+$BGCPUDetect true
+
+#Settings
+*Application: Settings 
+*Description: I want to change the sound of my phone, but I can''t change it when I go into settings. Settings > Sounds and vibration > Ringtone >> Can not change.
+*Unit precondition: 
+   *-SIM:
+   *-Wifi connect:
+   *-Account:
+   *-User-data: 
+   *-APK install:
+   *-Other: 
+*Time: 3
+
+3000 change_lang ENGLISH
+10000 
+run Settings 
+3000 
+click d="Search settings"
+3000 
+type System so
+5000
+if click t="System sound"
+5000
+end
+if click t="Ringtone"
+3000
+end 
+3000 volume RING 15
+3000 volume MUSIC 15
+3000 
+if click res="com.samsung.android.secsoundpicker:id/radiobuttion_checkedtextview"
+10000
+end 
+3000
+if click d="Add"
+3000
+end 
+if click res="com.samsung.android.app.soundpicker:id/radio"
+10000
+end 
+3000 press back
+3000
+if click res="com.samsung.android.secsoundpicker:id/radiobuttion_checkedtextview"
+10000
+end 
+3000 volume RING 5
+3000 volume MUSIC 5
+3000 loadlibrary back_to_home
+
+*******Library*******
+@back_to_home
+for 5 
+500 press back
+end
+
+@scroll_down_to_up
+10 mtouch 0 1 [ 0 900 1700 s=0.0200 ]
+40 mtouch 2 1 [ 0 900 1620 s=0.0200 ]
+40 mtouch 2 1 [ 0 900 1540 s=0.0200 ]
+40 mtouch 2 1 [ 0 900 1460 s=0.0200 ]
+40 mtouch 2 1 [ 0 900 1380 s=0.0200 ]
+40 mtouch 2 1 [ 0 900 1300 s=0.0200 ]
+40 mtouch 2 1 [ 0 900 1220 s=0.0200 ]
+40 mtouch 2 1 [ 0 900 1140 s=0.0200 ]
+40 mtouch 2 1 [ 0 900 1060 s=0.0200 ]
+40 mtouch 1 1 [ 0 900 1000 s=0.0200 ]

@@ -1,0 +1,206 @@
+﻿*Description:
+*P250317-06342_Samsung Notes cannot sort_There is a bug In version 4.4.26.71
+
+$SPenErrorDetect false
+$ResetErrorDetect true
+$AllowDeepSleep true
+$StorageFullDetect true
+$FullcapInterval 60
+$BatteryChargeOption false
+$ChargeRepeatCnt 400
+$ChargeEnableLv 15
+$ChargeDiableLv 100
+$BatteryChargeFull false
+$StopLvBattery 100
+$BatteryEndLevel 2
+$PauseCharge false
+$BatteryDropDetectLv 2
+$AutoStart false
+$ACTWatchCat false
+$ACTWatchCatInterval 120000
+$ErrorDetect false
+$IgnoreError true
+$ShakeAction true
+$ContinueTestWhenErrorDetected true
+$TopLayerScriptView true
+$DelayTimeAfterReboot 5000
+$PointerLocation false
+$SaveScreenshot true
+$SaveResultAlways true
+$USBWarning false
+$LcdErrorDetect 10
+$ABCFaultDetect true
+$IgnoreBootTimeFail true
+$PageFaultDetect true
+$isWaitTimeWhenFullChargeOption false
+$ShowChargeType false
+$AutomationReboot true
+$ShowScriptFileName true
+$ShakeActionSensitivity 1500
+$RebootWhenErrorOccurs false
+$NotificationCheck false
+$ThermistorDetect true
+$TAWarning false
+$SpenSaveAlways false
+$WaitChargeOption false
+$CloseActSessions true
+$TemperatureDetection 43
+$ANRDetect false
+$CameraErrorDetect true
+$CrashDetect true
+$SamsungPKGErrorDetect true
+$ShakeActionBrightness 130
+$WifiFwCrashDetect true
+$BGCPUDetect true
+
+#Samsung Notes
+*Application: Samsung Notes
+*Description: Samsung Notes cannot sort Open Samsung Notes > Menu > Sort
+*Unit precondition: 
+   *-SIM:
+   *-Wifi connect:
+   *-Account:
+   *-User-data: 
+   *-APK install:
+   *-Other: 
+*Time: 5
+
+3000 change_lang ENGLISH
+10000
+run com.samsung.android.app.notes
+3000 
+if click t="Get started"
+3000
+end
+if click d="Navigation drawer"
+3000
+end
+if click t="Manage folders"
+3000
+end
+if click t="Edit"
+3000
+end
+if click t="All"
+3000
+end
+if click t="Delete all"
+3000
+end
+if click t="Move to Trash"
+3000
+end
+
+*Make 3 folder A,B,C
+3000
+if click t="Create folder"
+3000 type A
+3000 click t = "Add"
+end
+3000
+if click t="Create folder"
+3000 type B
+3000 click t = "Add"
+end
+3000
+if click t="Create folder"
+3000 type C
+3000 click t = "Add"
+end
+
+*Must Modify A<>C_C<>A_A<>C
+ 5000 mtouch 0 1 [ 0 973 540 s=0.0200 ]
+ 200 mtouch 2 1 [ 0 973 590 s=0.0200 ]
+ 200 mtouch 2 1 [ 0 973 610 s=0.0200 ]
+ 200 mtouch 2 1 [ 0 973 630 s=0.0200 ]
+ 200 mtouch 2 1 [ 0 973 660 s=0.0200 ]
+ 200 mtouch 2 1 [ 0 973 700 s=0.0200 ]
+ 200 mtouch 2 1 [ 0 973 740 s=0.0200 ]
+ 200 mtouch 2 1 [ 0 973 780 s=0.0200 ]
+ 200 mtouch 2 1 [ 0 973 840 s=0.0200 ]
+ 200 mtouch 1 1 [ 0 973 840 s=0.0200 ]
+5000
+
+ 5000 mtouch 0 1 [ 0 973 840 s=0.0200 ]
+ 200 mtouch 2 1 [ 0 973 800 s=0.0200 ]
+ 200 mtouch 2 1 [ 0 973 770 s=0.0200 ]
+ 200 mtouch 2 1 [ 0 973 740 s=0.0200 ]
+ 200 mtouch 2 1 [ 0 973 710 s=0.0200 ]
+ 200 mtouch 2 1 [ 0 973 680 s=0.0200 ]
+ 200 mtouch 2 1 [ 0 973 630 s=0.0200 ]
+ 200 mtouch 2 1 [ 0 973 570 s=0.0200 ]
+ 200 mtouch 2 1 [ 0 973 520 s=0.0200 ]
+ 200 mtouch 1 1 [ 0 973 520 s=0.0200 ]
+5000
+
+ 5000 mtouch 0 1 [ 0 973 540 s=0.0200 ]
+ 200 mtouch 2 1 [ 0 973 590 s=0.0200 ]
+ 200 mtouch 2 1 [ 0 973 610 s=0.0200 ]
+ 200 mtouch 2 1 [ 0 973 630 s=0.0200 ]
+ 200 mtouch 2 1 [ 0 973 660 s=0.0200 ]
+ 200 mtouch 2 1 [ 0 973 700 s=0.0200 ]
+ 200 mtouch 2 1 [ 0 973 740 s=0.0200 ]
+ 200 mtouch 2 1 [ 0 973 780 s=0.0200 ]
+ 200 mtouch 2 1 [ 0 973 840 s=0.0200 ]
+ 200 mtouch 1 1 [ 0 973 840 s=0.0200 ]
+5000
+
+if click t="Edit"
+3000
+end
+if click t="All"
+3000
+end
+if click t="Delete all"
+3000
+end
+if click t="Move to Trash"
+3000
+end
+3000 loadlibrary back_to_home
+
+* Make file and sort
+3000 run com.samsung.android.app.notes
+3000 
+5000 
+if click t="Get started"
+3000
+end
+
+for 2
+3000
+if click d="Create note"
+5000
+end
+tap center
+3000
+random_text 500
+3000 press back
+3000 press back
+end 
+
+5000
+for 2
+if click res=com.samsung.android.app.notes:id/sort_arrow
+5000
+end
+end
+1000 loadlibrary back_to_home
+
+*******Library*******
+@back_to_home
+for 5 
+500 press back
+end
+
+@scroll_down_to_up
+10 mtouch 0 1 [ 0 900 1700 s=0.0200 ]
+40 mtouch 2 1 [ 0 900 1620 s=0.0200 ]
+40 mtouch 2 1 [ 0 900 1540 s=0.0200 ]
+40 mtouch 2 1 [ 0 900 1460 s=0.0200 ]
+40 mtouch 2 1 [ 0 900 1380 s=0.0200 ]
+40 mtouch 2 1 [ 0 900 1300 s=0.0200 ]
+40 mtouch 2 1 [ 0 900 1220 s=0.0200 ]
+40 mtouch 2 1 [ 0 900 1140 s=0.0200 ]
+40 mtouch 2 1 [ 0 900 1060 s=0.0200 ]
+40 mtouch 1 1 [ 0 900 1000 s=0.0200 ]

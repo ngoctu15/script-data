@@ -1,0 +1,149 @@
+﻿*Description:
+*P250303-00411_When opening a multi-page PDF file with Samsung Notes, it automatically exits_The issue from pdfium - 3rd google lib.
+
+$SPenErrorDetect false
+$ResetErrorDetect true
+$AllowDeepSleep true
+$StorageFullDetect true
+$FullcapInterval 60
+$BatteryChargeOption false
+$ChargeRepeatCnt 400
+$ChargeEnableLv 15
+$ChargeDiableLv 100
+$BatteryChargeFull false
+$StopLvBattery 100
+$BatteryEndLevel 2
+$PauseCharge false
+$BatteryDropDetectLv 2
+$AutoStart false
+$ACTWatchCat false
+$ACTWatchCatInterval 120000
+$ErrorDetect false
+$IgnoreError true
+$ShakeAction true
+$ContinueTestWhenErrorDetected true
+$TopLayerScriptView true
+$DelayTimeAfterReboot 5000
+$PointerLocation false
+$SaveScreenshot true
+$SaveResultAlways true
+$USBWarning false
+$LcdErrorDetect 10
+$ABCFaultDetect true
+$IgnoreBootTimeFail true
+$PageFaultDetect true
+$isWaitTimeWhenFullChargeOption false
+$ShowChargeType false
+$AutomationReboot true
+$ShowScriptFileName true
+$ShakeActionSensitivity 1500
+$RebootWhenErrorOccurs false
+$NotificationCheck false
+$ThermistorDetect true
+$TAWarning false
+$SpenSaveAlways false
+$WaitChargeOption false
+$CloseActSessions true
+$TemperatureDetection 43
+$ANRDetect false
+$CameraErrorDetect true
+$CrashDetect true
+$SamsungPKGErrorDetect true
+$ShakeActionBrightness 130
+$WifiFwCrashDetect true
+$BGCPUDetect true
+
+#Samsung Notes
+*Application: Samsung Notes
+*Description: When opening a multi-page PDF file with Samsung Notes, it automatically exits. Samsung Notes > Open Multi-page PDF.
+*Unit precondition: 
+   *-SIM:
+   *-Wifi connect:
+   *-Account:
+   *-User-data: PDF file,
+   *-APK install:
+   *-Other: 
+*Time: 5
+
+3000 change_lang ENGLISH
+10000 run com.samsung.android.app.notes
+3000 
+if click t="Get started"
+3000
+end
+3000 press menu
+3000
+if click t="Edit"
+3000
+end
+if click t="All"
+3000
+end
+if click t="Delete all"
+3000
+end
+if click t="Move to Trash"
+3000
+end
+3000 loadlibrary back_to_home
+3000
+
+3000 run com.samsung.android.app.notes
+3000 
+if click d="Create note"
+5000
+end
+tap center
+3000
+type P250303-00411
+1000 press enter
+1000 press enter
+for 20
+1000 random_text 500
+end
+3000 press back
+3000 press back
+
+*Must Modify location point
+if click res=com.samsung.android.app.notes:id/root_cardview
+10000
+end
+for 5 
+3000 scroll up
+end
+
+3000 loadlibrary back_to_home
+3000
+3000 run com.samsung.android.app.notes
+3000 click d="Import PDF"
+3000 click d="Search"
+*Must Modify name of file
+3000 type Test multi pdf
+3000 press enter
+3000 click res=com.sec.android.app.myfiles:id/checkbox
+3000 click t = "Add to selection"
+3000 click t = "Done"
+
+for 5 
+3000 
+loadlibrary scroll_down_to_up
+end
+3000 loadlibrary back_to_home
+
+*******Library*******
+@back_to_home
+for 5 
+500 press back
+end
+
+@scroll_down_to_up
+10 mtouch 0 1 [ 0 900 1700 s=0.0200 ]
+40 mtouch 2 1 [ 0 900 1620 s=0.0200 ]
+40 mtouch 2 1 [ 0 900 1540 s=0.0200 ]
+40 mtouch 2 1 [ 0 900 1460 s=0.0200 ]
+40 mtouch 2 1 [ 0 900 1380 s=0.0200 ]
+40 mtouch 2 1 [ 0 900 1300 s=0.0200 ]
+40 mtouch 2 1 [ 0 900 1220 s=0.0200 ]
+40 mtouch 2 1 [ 0 900 1140 s=0.0200 ]
+40 mtouch 2 1 [ 0 900 1060 s=0.0200 ]
+40 mtouch 1 1 [ 0 900 1000 s=0.0200 ]

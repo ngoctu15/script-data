@@ -1,0 +1,82 @@
+*Description:
+*P250206-02260_Unable to open camera application_The screen recorder provider is called for user notification, the provider cannot be found and the camera is terminated
+
+
+$SPenErrorDetect false
+$ResetErrorDetect true
+$AllowDeepSleep true
+$StorageFullDetect true
+$FullcapInterval 60
+$BatteryChargeOption false
+$ChargeRepeatCnt 400
+$ChargeEnableLv 15
+$ChargeDiableLv 100
+$BatteryChargeFull false
+$StopLvBattery 100
+$BatteryEndLevel 2
+$PauseCharge false
+$BatteryDropDetectLv 2
+$AutoStart false
+$ACTWatchCat false
+$ACTWatchCatInterval 120000
+$ErrorDetect false
+$IgnoreError true
+$ShakeAction true
+$ContinueTestWhenErrorDetected true
+$TopLayerScriptView true
+$DelayTimeAfterReboot 5000
+$PointerLocation false
+$SaveScreenshot true
+$SaveResultAlways true
+$USBWarning false
+$LcdErrorDetect 10
+$ABCFaultDetect true
+$IgnoreBootTimeFail true
+$PageFaultDetect true
+$isWaitTimeWhenFullChargeOption false
+$ShowChargeType false
+$AutomationReboot true
+$ShowScriptFileName true
+$ShakeActionSensitivity 1500
+$RebootWhenErrorOccurs false
+$NotificationCheck false
+$ThermistorDetect true
+$TAWarning false
+$SpenSaveAlways false
+$WaitChargeOption false
+$CloseActSessions true
+$TemperatureDetection 43
+$ANRDetect false
+$CameraErrorDetect true
+$CrashDetect true
+$SamsungPKGErrorDetect true
+$ShakeActionBrightness 130
+$WifiFwCrashDetect true
+$BGCPUDetect true
+
+
+
+********INPUT SCENARIO************
+
+
+#Open Camera when recording screen
+*Application: Camera, Samsung Capture
+*Description: Open Camera when recording screen, detect issue camera keeps stopping when recording screen
+*Unit precondition: 
+   *-SIM:
+   *-Wifi connect: yes
+   *-Account: Samsung account
+   *-User-data: 
+   *-APK install:
+   *-Other: Device runs UJ5 binary (FOTA from latest confirm Q OS binary TJ3), and before FOTA: must update Samsung Capture app from version 4.2.27 to 4.9.50.1
+*Time: 5
+
+	
+	doshell date | tr '\n' ' '  >> /sdcard/ACT_LOGS/testlog_Aging.txt  ; echo "/  \c" >> /sdcard/ACT_LOGS/testlog_Aging.txt
+	for 50
+		
+		3000 run com.sec.android.app.camera
+		3000 press home
+	end
+
+*********END SCENARIO***********

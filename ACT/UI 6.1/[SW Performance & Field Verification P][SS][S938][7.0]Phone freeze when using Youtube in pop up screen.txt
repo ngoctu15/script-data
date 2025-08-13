@@ -1,0 +1,101 @@
+*Description:
+*P250224-00914_Phone feeeze when YouTube in pop up screen_fix NPE
+
+$SPenErrorDetect false
+$ResetErrorDetect true
+$AllowDeepSleep true
+$StorageFullDetect true
+$FullcapUpload true
+
+$BatteryChargeOption false
+$ChargeRepeatCnt 4
+$ChargeEnableLv 10
+$ChargeDiableLv 100
+$BatteryChargeFull false
+$StopLvBattery 100
+$BatteryEndLevel 10
+$PauseCharge false
+$BatteryDropDetectLv 15
+
+$AutoStart false
+$ACTWatchCat true
+$ACTWatchCatInterval 120000
+$ErrorDetect false
+$IgnoreError true
+$ShakeAction true
+$ContinueTestWhenErrorDetected true
+$TopLayerScriptView true
+$DelayTimeAfterReboot 5000
+
+$PointerLocation false
+$SaveScreenshot false
+$SaveResultAlways true
+$USBWarning false
+$LcdErrorDetect 10
+$ABCFaultDetect true
+$IgnoreBootTimeFail false
+
+$PageFaultDetect true
+$ShowChargeType false
+$AutomationReboot true
+$ShowScriptFileName true
+$ShakeActionSensitivity 1500
+$RebootWhenErrorOccurs false
+$NotificationCheck false
+$ThermistorDetect true
+$TAWarning false
+$WaitChargeOption true
+
+$ANRDetect false
+$CameraErrorDetect true
+$CrashDetect true
+$SamsungPKGErrorDetect true
+$ShakeActionBrightness 130
+
+#Open Youtube in pop up screen (10)
+*Application: Chrome, Camera, Messeages, Youtube
+*Description: Run youtube in pop up screen & detect phone freeze
+*Unit precondition: 
+   *-SIM:
+   *-Wifi connect: yes
+   *-Account: google, youtube
+   *-User-data:
+   *-APK install:
+   *-Other:
+*Time: 12
+for 10
+	2000 run Messages
+	2000 run Chrome
+	2000 run Camera
+	2000 run Youtube
+	2000 click d="\QSearch\E"
+	2000 type healing music
+	2000 click d="\QSearch\E"
+
+	1000 waitfor p=com.google.android.youtube c=android.widget.ImageView to=20000
+	2000 scroll h f
+	2000 click d="\QAction menu\E"
+	2000 click t="\QPlay next in queue\E"
+	2000 click d="\QPlay video\E"
+
+	3000 press APP_SWITCH
+	2000 click d="\QCamera\E"
+	1000 click res=com.sec.android.app.camera:id/normal_center_button
+
+	3000 press APP_SWITCH
+	2000 click d="\QChrome\E"
+	1000 click res=com.android.chrome:id/url_bar
+	1000 type news
+	1000 click d="\QGo\E"
+
+	3000 press APP_SWITCH
+	2000 click d="\QCamera\E"
+	1000 click res=com.sec.android.app.camera:id/normal_center_button
+	2000 press home
+
+	1000 click res=com.google.android.youtube:id/action_bar_root
+	1000 click d="\QClose\E"
+	2000 press APP_SWITCH
+	2000 click t="Close all"
+end
+

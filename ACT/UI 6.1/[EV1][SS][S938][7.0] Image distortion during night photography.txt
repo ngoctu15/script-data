@@ -1,0 +1,850 @@
+*Description:
+*P250224-07269_Image distortion during night photography_Lack of tuning for flat Scene when improving ultra-low light noise/brightness
+
+
+$SPenErrorDetect false
+$ResetErrorDetect true
+$AllowDeepSleep true
+$StorageFullDetect true
+$FullcapInterval 60
+$BatteryChargeOption false
+$ChargeRepeatCnt 400
+$ChargeEnableLv 15
+$ChargeDiableLv 100
+$BatteryChargeFull false
+$StopLvBattery 100
+$BatteryEndLevel 2
+$PauseCharge false
+$BatteryDropDetectLv 2
+$AutoStart false
+$ACTWatchCat false
+$ACTWatchCatInterval 120000
+$ErrorDetect false
+$IgnoreError true
+$ShakeAction true
+$ContinueTestWhenErrorDetected true
+$TopLayerScriptView true
+$DelayTimeAfterReboot 5000
+$PointerLocation false
+$SaveScreenshot true
+$SaveResultAlways true
+$USBWarning false
+$LcdErrorDetect 10
+$ABCFaultDetect true
+$IgnoreBootTimeFail true
+$PageFaultDetect true
+$isWaitTimeWhenFullChargeOption false
+$ShowChargeType false
+$AutomationReboot true
+$ShowScriptFileName true
+$ShakeActionSensitivity 1500
+$RebootWhenErrorOccurs false
+$NotificationCheck false
+$ThermistorDetect true
+$TAWarning false
+$SpenSaveAlways false
+$WaitChargeOption false
+$CloseActSessions true
+$TemperatureDetection 43
+$ANRDetect false
+$CameraErrorDetect true
+$CrashDetect true
+$SamsungPKGErrorDetect true
+$ShakeActionBrightness 130
+$WifiFwCrashDetect true
+$BGCPUDetect true
+
+********INPUT SCENARIO************
+
+
+#PHOTO MODE: Capture images with 12M resolutions, ratio 3:4, zoom 0.6x
+*Application: Camera
+*Description: Take picture in low light with 12M resolutions, ratio 3:4, zoom 0.6x and quick view, detect issue Image distortion during night photography
+*Unit precondition: 
+   *-SIM:
+   *-Wifi connect: yes
+   *-Account: 
+   *-User-data: 
+   *-APK install:
+   *-Other: Capture image in Ultra-low light 0.5lux or less
+*Time: 1
+
+	doshell date | tr '\n' ' '  >> /sdcard/ACT_LOGS/testlog_Aging.txt  ; echo "/ Capture images with 12M resolutions, ratio 3:4, zoom 0.6x \c" >> /sdcard/ACT_LOGS/testlog_Aging.txt
+	
+	*Start Camera
+	3000 run com.sec.android.app.camera
+	*Reset Camera
+	2000 click d="(?i)Quick controls"
+	2000 click t="(?i)Go to Settings"
+	1000 scroll v f
+	500 scroll v f
+	1000 click t="(?i)Reset settings"
+	2000 click t="(?i)Reset" 
+	
+	*Change Resolution to 12M
+	5000 click d="(?i)Resolution"
+	1000 click t="(?i)BACK_CAMERA_PICTURE_SIZE_NORMAL"
+	
+	*Change Ratio to 3:4
+	2000 click d="(?i)Quick controls"
+	2000 click t="(?i)Ratio"
+	1000 click t="(?i)BACK_CAMERA_PICTURE_RATIO_NORMAL"
+	2000 press back
+	
+	*Change Zoom to 0.6x
+	2000 click t="(?i).6"
+	
+	*Capture image and quick view
+	sleep 2000 
+	for 10
+		2000 click d="(?i)Take picture"
+	end
+	sleep 2000 
+	5000 click res=com.sec.android.app.camera:id/quick_view_button_layout
+	for 10
+		2000 scroll h f
+	end
+	3000 press back
+	2000 press home
+
+
+
+#PHOTO MODE: Capture images with 12M resolutions, ratio 3:4, zoom 1x
+*Application: Camera
+*Description: Take picture in low light with 12M resolutions, ratio 3:4, zoom 1x and quick view, detect issue Image distortion during night photography
+*Unit precondition: 
+   *-SIM:
+   *-Wifi connect: yes
+   *-Account: 
+   *-User-data: 
+   *-APK install:
+   *-Other: Capture image in Ultra-low light 0.5lux or less
+*Time: 1
+	
+	*doshell date | tr '\n' ' '  >> /sdcard/ACT_LOGS/testlog_Aging.txt  ; echo "/Capture images with 12M resolutions, ratio 3:4, zoom 1x\c" >> /sdcard/ACT_LOGS/testlog_Aging.txt
+	*Start Camera
+	3000 run com.sec.android.app.camera
+	
+	*Reset Camera
+	2000 click d="(?i)Quick controls"
+	2000 click t="(?i)Go to Settings"
+	1000 scroll v f
+	500 scroll v f
+	1000 click t="(?i)Reset settings"
+	2000 click t="(?i)Reset"  
+	
+	*Change Resolution to 12M
+	5000 click d="(?i)Resolution"
+	1000 click t="(?i)BACK_CAMERA_PICTURE_SIZE_NORMAL"
+	
+	*Change Ratio to 3:4
+	2000 click d="(?i)Quick controls"
+	2000 click t="(?i)Ratio"
+	1000 click t="(?i)BACK_CAMERA_PICTURE_RATIO_NORMAL"
+	2000 press back
+	
+	*Change Zoom to 1x
+	2000 click t="(?i)1"
+	
+	*Capture image and quick view
+	sleep 2000 
+	for 10
+		2000 click d="(?i)Take picture"
+	end
+	sleep 2000 
+	5000 click res=com.sec.android.app.camera:id/quick_view_button_layout
+	for 10
+		2000 scroll h f
+	end
+	3000 press back
+	2000 press home
+
+
+
+#PHOTO MODE: Capture images with 12M resolutions, ratio 3:4, zoom 2x
+*Application: Camera
+*Description: Take picture in low light with 12M resolutions, ratio 3:4, zoom 2x and quick view, detect issue Image distortion during night photography
+*Unit precondition: 
+   *-SIM:
+   *-Wifi connect: yes
+   *-Account: 
+   *-User-data: 
+   *-APK install:
+   *-Other: Capture image in Ultra-low light 0.5lux or less
+*Time: 1
+	
+	doshell date | tr '\n' ' '  >> /sdcard/ACT_LOGS/testlog_Aging.txt  ; echo "/ Capture images with 12M resolutions, ratio 3:4, zoom 2x \c" >> /sdcard/ACT_LOGS/testlog_Aging.txt
+	
+	*Start Camera
+	3000 run com.sec.android.app.camera
+	
+	*Reset Camera
+	2000 click d="(?i)Quick controls"
+	2000 click t="(?i)Go to Settings"
+	1000 scroll v f
+	500 scroll v f
+	1000 click t="(?i)Reset settings"
+	2000 click t="(?i)Reset"  
+	
+	*Change Resolution to 12M
+	5000 click d="(?i)Resolution"
+	1000 click t="(?i)BACK_CAMERA_PICTURE_SIZE_NORMAL"
+	
+	*Change Ratio to 3:4
+	2000 click d="(?i)Quick controls"
+	2000 click t="(?i)Ratio"
+	1000 click t="(?i)BACK_CAMERA_PICTURE_RATIO_NORMAL"
+	2000 press back
+	
+	*Change Zoom to 2x
+	2000 click t="(?i)2"
+	
+	*Capture image and quick view
+	sleep 2000 
+	for 10
+		2000 click d="(?i)Take picture"
+	end
+	sleep 2000 
+	5000 click res=com.sec.android.app.camera:id/quick_view_button_layout
+	for 10
+		2000 scroll h f
+	end
+	3000 press back
+	2000 press home
+
+
+
+#PHOTO MODE: Capture images with 12M resolutions, ratio 3:4, zoom 3x
+*Application: Camera
+*Description: Take picture in low light with 12M resolutions, ratio 3:4, zoom 3x and quick view, detect issue Image distortion during night photography
+*Unit precondition: 
+   *-SIM:
+   *-Wifi connect: yes
+   *-Account: 
+   *-User-data: 
+   *-APK install:
+   *-Other: Capture image in Ultra-low light 0.5lux or less
+*Time: 1
+	
+	doshell date | tr '\n' ' '  >> /sdcard/ACT_LOGS/testlog_Aging.txt  ; echo "/ Capture images with 12M resolutions, ratio 3:4, zoom 3x \c" >> /sdcard/ACT_LOGS/testlog_Aging.txt
+	
+	*Start Camera and 
+	3000 run com.sec.android.app.camera
+	*Reset Camera
+	2000 click d="(?i)Quick controls"
+	2000 click t="(?i)Go to Settings"
+	1000 scroll v f
+	500 scroll v f
+	1000 click t="(?i)Reset settings"
+	2000 click t="(?i)Reset"  
+	
+	*Change Resolution to 12M
+	5000 click d="(?i)Resolution"
+	1000 click t="(?i)BACK_CAMERA_PICTURE_SIZE_NORMAL"
+	
+	*Change Ratio to 3:4
+	2000 click d="(?i)Quick controls"
+	2000 click t="(?i)Ratio"
+	1000 click t="(?i)BACK_CAMERA_PICTURE_RATIO_NORMAL"
+	2000 press back
+	
+	*Change Zoom to 3x
+	2000 click t="(?i)3"
+	
+	*Capture image and quick view
+	sleep 2000 
+	for 10
+		2000 click d="(?i)Take picture"
+	end
+	sleep 2000 
+	5000 click res=com.sec.android.app.camera:id/quick_view_button_layout
+	for 10
+		2000 scroll h f
+	end
+	3000 press back
+	2000 press home
+
+
+
+
+#PHOTO MODE: Capture images with 12M resolutions, ratio 3:4, zoom 5x
+*Application: Camera
+*Description: Take picture in low light with 12M resolutions, ratio 3:4, zoom 5x and quick view, detect issue Image distortion during night photography
+*Unit precondition: 
+   *-SIM:
+   *-Wifi connect: yes
+   *-Account: 
+   *-User-data: 
+   *-APK install:
+   *-Other: Capture image in Ultra-low light 0.5lux or less
+*Time: 1
+	
+	doshell date | tr '\n' ' '  >> /sdcard/ACT_LOGS/testlog_Aging.txt  ; echo "/ Capture images with 12M resolutions, ratio 3:4, zoom 5x \c" >> /sdcard/ACT_LOGS/testlog_Aging.txt
+	
+	*Start Camera 
+	3000 run com.sec.android.app.camera
+	
+	*Reset Camera
+	2000 click d="(?i)Quick controls"
+	2000 click t="(?i)Go to Settings"
+	1000 scroll v f
+	500 scroll v f
+	1000 click t="(?i)Reset settings"
+	2000 click t="(?i)Reset"  
+	
+	*Change Resolution to 12M
+	5000 click d="(?i)Resolution"
+	1000 click t="(?i)BACK_CAMERA_PICTURE_SIZE_NORMAL"
+	
+	*Change Ratio to 3:4
+	2000 click d="(?i)Quick controls"
+	2000 click t="(?i)Ratio"
+	1000 click t="(?i)BACK_CAMERA_PICTURE_RATIO_NORMAL"
+	2000 press back
+	
+	*Change Zoom to 5x
+	2000 click t="(?i)5"
+	
+	*Capture image and quick view
+	sleep 2000 
+	for 10
+		2000 click d="(?i)Take picture"
+	end
+	sleep 2000 
+	5000 click res=com.sec.android.app.camera:id/quick_view_button_layout
+	for 10
+		2000 scroll h f
+	end
+	3000 press back
+	2000 press home
+
+
+
+#PHOTO MODE: Capture images with 12M resolutions, ratio 3:4, zoom 10x
+*Application: Camera
+*Description: Take picture in low light with 12M resolutions, ratio 3:4, zoom 10x and quick view, detect issue Image distortion during night photography
+*Unit precondition: 
+   *-SIM:
+   *-Wifi connect: yes
+   *-Account: 
+   *-User-data: 
+   *-APK install: 
+   *-Other: Capture image in Ultra-low light 0.5lux or less
+*Time: 1
+
+	
+	doshell date | tr '\n' ' '  >> /sdcard/ACT_LOGS/testlog_Aging.txt  ; echo "/ Capture images with 12M resolutions, ratio 3:4, zoom 10x \c" >> /sdcard/ACT_LOGS/testlog_Aging.txt
+	
+	*Start Camera
+	3000 run com.sec.android.app.camera
+	
+	*Reset Camera
+	2000 click d="(?i)Quick controls"
+	2000 click t="(?i)Go to Settings"
+	1000 scroll v f
+	500 scroll v f
+	1000 click t="(?i)Reset settings"
+	2000 click t="(?i)Reset"  
+	
+	*Change Resolution to 12M
+	5000 click d="(?i)Resolution"
+	1000 click t="(?i)BACK_CAMERA_PICTURE_SIZE_NORMAL"
+	
+	*Change Ratio to 3:4
+	2000 click d="(?i)Quick controls"
+	2000 click t="(?i)Ratio"
+	1000 click t="(?i)BACK_CAMERA_PICTURE_RATIO_NORMAL"
+	2000 press back
+	
+	*Change Zoom to 10x
+	2000 click t="(?i)10"
+	
+	*Capture image and quick view
+	sleep 2000 
+	for 10
+		2000 click d="(?i)Take picture"
+	end
+	sleep 2000 
+	5000 click res=com.sec.android.app.camera:id/quick_view_button_layout
+	for 10
+		2000 scroll h f
+	end
+	3000 press back
+	2000 press home
+
+
+
+#PHOTO MODE: Capture images with 12M resolutions, ratio 3:4, zoom 30x
+*Application: Camera
+*Description: Take picture in low light with 12M resolutions, ratio 3:4, zoom 30x and quick view, detect issue Image distortion during night photography
+*Unit precondition: 
+   *-SIM:
+   *-Wifi connect: yes
+   *-Account: 
+   *-User-data: 
+   *-APK install: 
+   *-Other: Capture image in Ultra-low light 0.5lux or less
+*Time: 1
+
+	
+	doshell date | tr '\n' ' '  >> /sdcard/ACT_LOGS/testlog_Aging.txt  ; echo "/ Capture images with 12M resolutions, ratio 3:4, zoom 30x \c" >> /sdcard/ACT_LOGS/testlog_Aging.txt
+	
+	*Start Camera 
+	3000 run com.sec.android.app.camera
+	
+	*Reset Camera
+	2000 click d="(?i)Quick controls"
+	2000 click t="(?i)Go to Settings"
+	1000 scroll v f
+	500 scroll v f
+	1000 click t="(?i)Reset settings"
+	2000 click t="(?i)Reset"  
+	
+	*Change Resolution to 12M
+	5000 click d="(?i)Resolution"
+	1000 click t="(?i)BACK_CAMERA_PICTURE_SIZE_NORMAL"
+	
+	*Change Ratio to 3:4
+	2000 click d="(?i)Quick controls"
+	2000 click t="(?i)Ratio"
+	1000 click t="(?i)BACK_CAMERA_PICTURE_RATIO_NORMAL"
+	2000 press back
+	
+	*Change Zoom to 30x
+	2000 click t="(?i)10"
+	2000 click t="(?i)30"
+	
+	*Capture image and quick view
+	sleep 2000 
+	for 10
+		2000 click d="(?i)Take picture"
+	end
+	sleep 2000 
+	5000 click res=com.sec.android.app.camera:id/quick_view_button_layout
+	for 10
+		2000 scroll h f
+	end
+	3000 press back
+	2000 press home
+
+
+
+#PHOTO MODE: Capture images with 12M resolutions, ratio 3:4, zoom 100x
+*Application: Camera
+*Description: Take picture in low light with 12M resolutions, ratio 3:4, zoom 100x and quick view, detect issue Image distortion during night photography
+*Unit precondition: 
+   *-SIM:
+   *-Wifi connect: yes
+   *-Account: 
+   *-User-data: 
+   *-APK install: 
+   *-Other: Capture image in Ultra-low light 0.5lux or less
+*Time: 1
+	
+	doshell date | tr '\n' ' '  >> /sdcard/ACT_LOGS/testlog_Aging.txt  ; echo "/ Capture images with 12M resolutions, ratio 3:4, zoom 100x \c" >> /sdcard/ACT_LOGS/testlog_Aging.txt
+	
+	*Start Camera 
+	3000 run com.sec.android.app.camera
+	
+	*Reset Camera
+	2000 click d="(?i)Quick controls"
+	2000 click t="(?i)Go to Settings"
+	1000 scroll v f
+	500 scroll v f
+	1000 click t="(?i)Reset settings"
+	2000 click t="(?i)Reset"  
+	
+	*Change Resolution to 12M
+	5000 click d="(?i)Resolution"
+	1000 click t="(?i)BACK_CAMERA_PICTURE_SIZE_NORMAL"
+	
+	*Change Ratio to 3:4
+	2000 click d="(?i)Quick controls"
+	2000 click t="(?i)Ratio"
+	1000 click t="(?i)BACK_CAMERA_PICTURE_RATIO_NORMAL"
+	2000 press back
+	
+	*Change Zoom to 100x
+	2000 click t="(?i)10"
+	2000 click t="(?i)100"
+	
+	*Capture image and quick view
+	sleep 2000 
+	for 10
+		2000 click d="(?i)Take picture"
+	end
+	sleep 2000 
+	5000 click res=com.sec.android.app.camera:id/quick_view_button_layout
+	for 10
+		2000 scroll h f
+	end
+	3000 press back
+	2000 press home
+
+
+
+#PHOTO MODE: Capture images with 50M resolutions, ratio 3:4, zoom 0.6x
+*Application: Camera
+*Description: Take picture in low light with 50M resolutions, ratio 3:4, zoom 0.6x and quick view, detect issue Image distortion during night photography
+*Unit precondition: 
+   *-SIM:
+   *-Wifi connect: yes
+   *-Account: 
+   *-User-data: 
+   *-APK install: 
+   *-Other: Capture image in Ultra-low light 0.5lux or less
+*Time: 1.5
+
+
+	doshell date | tr '\n' ' '  >> /sdcard/ACT_LOGS/testlog_Aging.txt  ; echo "/ Capture images with 50M resolutions, ratio 3:4, zoom 0.6x \c" >> /sdcard/ACT_LOGS/testlog_Aging.txt
+	
+	*Start Camera
+	3000 run com.sec.android.app.camera
+	*Reset Camera
+	2000 click d="(?i)Quick controls"
+	2000 click t="(?i)Go to Settings"
+	1000 scroll v f
+	500 scroll v f
+	1000 click t="(?i)Reset settings"
+	2000 click t="(?i)Reset"  
+	
+	*Change Resolution to 50M
+	5000 click d="(?i)Resolution"
+	1000 click t="(?i)BACK_CAMERA_PICTURE_SIZE_HIGH"
+	
+	*Change Ratio to 3:4
+	2000 click d="(?i)Quick controls"
+	2000 click t="(?i)Ratio"
+	1000 click t="(?i)BACK_CAMERA_PICTURE_RATIO_NORMAL"
+	2000 press back
+	
+	*Change Zoom to 0.6x
+	2000 click t="(?i).6"
+	
+	*Capture image and quick view
+	sleep 2000 
+	for 10
+		2000 click d="(?i)Take picture"
+	end
+	sleep 2000 
+	5000 click res=com.sec.android.app.camera:id/quick_view_button_layout
+	for 10
+		2000 scroll h f
+	end
+	3000 press back
+	2000 press home
+
+
+#PHOTO MODE: Capture images with 50M resolutions, ratio 3:4, zoom 1x
+*Application: Camera
+*Description: Take picture in low light with 50M resolutions, ratio 3:4, zoom 1x and quick view, detect issue Image distortion during night photography
+*Unit precondition: 
+   *-SIM:
+   *-Wifi connect: yes
+   *-Account: 
+   *-User-data: 
+   *-APK install: 
+   *-Other: Capture image in Ultra-low light 0.5lux or less
+*Time: 1.5
+
+	doshell date | tr '\n' ' '  >> /sdcard/ACT_LOGS/testlog_Aging.txt  ; echo "/ Capture images with 50M resolutions, ratio 3:4, zoom 1x \c" >> /sdcard/ACT_LOGS/testlog_Aging.txt
+	
+	*Start Camera
+	3000 run com.sec.android.app.camera
+	*Reset Camera
+	2000 click d="(?i)Quick controls"
+	2000 click t="(?i)Go to Settings"
+	1000 scroll v f
+	500 scroll v f
+	1000 click t="(?i)Reset settings"
+	2000 click t="(?i)Reset"  
+	
+	*Change Resolution to 50M
+	5000 click d="(?i)Resolution"
+	1000 click t="(?i)BACK_CAMERA_PICTURE_SIZE_HIGH"
+	
+	*Change Ratio to 3:4
+	2000 click d="(?i)Quick controls"
+	2000 click t="(?i)Ratio"
+	1000 click t="(?i)BACK_CAMERA_PICTURE_RATIO_NORMAL"
+	2000 press back
+	
+	*Change Zoom to 1x
+	2000 click t="(?i)1"
+	
+	*Capture image and quick view
+	sleep 2000 
+	for 10
+		2000 click d="(?i)Take picture"
+	end
+	sleep 2000 
+	5000 click res=com.sec.android.app.camera:id/quick_view_button_layout
+	for 10
+		2000 scroll h f
+	end
+	3000 press back
+	2000 press home
+
+
+
+#PHOTO MODE: Capture images with 50M resolutions, ratio 3:4, zoom 5x
+*Application: Camera
+*Description: Take picture in low light with 50M resolutions, ratio 3:4, zoom 5x and quick view, detect issue Image distortion during night photography
+*Unit precondition: 
+   *-SIM:
+   *-Wifi connect: yes
+   *-Account: 
+   *-User-data: 
+   *-APK install: 
+   *-Other: Capture image in Ultra-low light 0.5lux or less
+*Time: 1.5
+
+	doshell date | tr '\n' ' '  >> /sdcard/ACT_LOGS/testlog_Aging.txt  ; echo "/ Capture images with 50M resolutions, ratio 3:4, zoom 5x \c" >> /sdcard/ACT_LOGS/testlog_Aging.txt
+	
+	*Start Camera
+	3000 run com.sec.android.app.camera
+	*Reset Camera
+	2000 click d="(?i)Quick controls"
+	2000 click t="(?i)Go to Settings"
+	1000 scroll v f
+	500 scroll v f
+	1000 click t="(?i)Reset settings"
+	2000 click t="(?i)Reset"  
+	
+	*Change Resolution to 50M
+	5000 click d="(?i)Resolution"
+	1000 click t="(?i)BACK_CAMERA_PICTURE_SIZE_HIGH"
+	
+	*Change Ratio to 3:4
+	2000 click d="(?i)Quick controls"
+	2000 click t="(?i)Ratio"
+	1000 click t="(?i)BACK_CAMERA_PICTURE_RATIO_NORMAL"
+	2000 press back
+	
+	*Change Zoom to 5x
+	2000 click t="(?i)5"
+	
+	*Capture image and quick view
+	sleep 2000 
+	for 10
+		2000 click d="(?i)Take picture"
+	end
+	sleep 2000 
+	5000 click res=com.sec.android.app.camera:id/quick_view_button_layout
+	for 10
+		2000 scroll h f
+	end
+	3000 press back
+	2000 press home
+
+
+#PHOTO MODE: Capture images with 50M resolutions, ratio 3:4, zoom 10x
+*Application: Camera
+*Description: Take picture in low light with 50M resolutions, ratio 3:4, zoom 10x and quick view, detect issue Image distortion during night photography
+*Unit precondition: 
+   *-SIM:
+   *-Wifi connect: yes
+   *-Account: 
+   *-User-data: 
+   *-APK install: 
+   *-Other: Capture image in Ultra-low light 0.5lux or less
+*Time: 1.5
+
+
+	doshell date | tr '\n' ' '  >> /sdcard/ACT_LOGS/testlog_Aging.txt  ; echo "/ Capture images with 50M resolutions, ratio 3:4, zoom 10x \c" >> /sdcard/ACT_LOGS/testlog_Aging.txt
+	
+	*Start Camera
+	3000 run com.sec.android.app.camera
+	*Reset Camera
+	2000 click d="(?i)Quick controls"
+	2000 click t="(?i)Go to Settings"
+	1000 scroll v f
+	500 scroll v f
+	1000 click t="(?i)Reset settings"
+	2000 click t="(?i)Reset"  
+	
+	*Change Resolution to 50M
+	3000 click d="(?i)Resolution"
+	1000 click t="(?i)BACK_CAMERA_PICTURE_SIZE_HIGH"
+	
+	*Change Ratio to 3:4
+	2000 click d="(?i)Quick controls"
+	2000 click t="(?i)Ratio"
+	1000 click t="(?i)BACK_CAMERA_PICTURE_RATIO_NORMAL"
+	2000 press back
+	
+	*Change Zoom to 10x
+	2000 click t="(?i)5"
+	2000 click t="(?i)10"
+	
+	*Capture image and quick view
+	sleep 2000 
+	for 10
+		2000 click d="(?i)Take picture"
+	end
+	sleep 2000 
+	5000 click res=com.sec.android.app.camera:id/quick_view_button_layout
+	for 10
+		2000 scroll h f
+	end
+	3000 press back
+	2000 press home
+
+
+
+#PHOTO MODE: Capture images with 200M resolutions, ratio 3:4, zoom 1x
+*Application: Camera
+*Description: Take picture in low light with 200M resolutions, ratio 3:4, zoom 1x and quick view, detect issue Image distortion during night photography
+*Unit precondition: 
+   *-SIM:
+   *-Wifi connect: yes
+   *-Account: 
+   *-User-data: 
+   *-APK install: 
+   *-Other: Capture image in Ultra-low light 0.5lux or less
+*Time: 2
+
+	doshell date | tr '\n' ' '  >> /sdcard/ACT_LOGS/testlog_Aging.txt  ; echo "/ Capture images with 200M resolutions, ratio 3:4, zoom 1x \c" >> /sdcard/ACT_LOGS/testlog_Aging.txt
+	
+	*Start Camera
+	3000 run com.sec.android.app.camera
+	*Reset Camera
+	2000 click d="(?i)Quick controls"
+	2000 click t="(?i)Go to Settings"
+	1000 scroll v f
+	500 scroll v f
+	1000 click t="(?i)Reset settings"
+	2000 click t="(?i)Reset"  
+	
+	*Change Resolution to 200M
+	3000 click d="(?i)Resolution"
+	1000 click t="(?i)BACK_CAMERA_PICTURE_SIZE_ULTRA_HIGH"
+	
+	*Change Ratio to 3:4
+	2000 click d="(?i)Quick controls"
+	2000 click t="(?i)Ratio"
+	1000 click t="(?i)BACK_CAMERA_PICTURE_SIZE_RATIO_NORMAL"
+	2000 press back
+	
+	*Change Zoom to 1x
+	2000 click t="(?i)1"
+	
+	*Capture image and quick view
+	sleep 2000 
+	for 10
+		2000 click d="(?i)Take picture"
+	end
+	sleep 2000 
+	5000 click res=com.sec.android.app.camera:id/quick_view_button_layout
+	for 10
+		2000 scroll h f
+	end
+	3000 press back
+	2000 press home
+
+
+#PHOTO MODE: Capture images with 200M resolutions, ratio 3:4, zoom 5x
+*Application: Camera
+*Description: Take picture in low light with 200M resolutions, ratio 3:4, zoom 5x and quick view, detect issue Image distortion during night photography
+*Unit precondition: 
+   *-SIM:
+   *-Wifi connect: yes
+   *-Account: 
+   *-User-data: 
+   *-APK install: 
+   *-Other: Capture image in Ultra-low light 0.5lux or less
+*Time: 2
+
+	doshell date | tr '\n' ' '  >> /sdcard/ACT_LOGS/testlog_Aging.txt  ; echo "/ Capture images with 200M resolutions, ratio 3:4, zoom 5x \c" >> /sdcard/ACT_LOGS/testlog_Aging.txt
+	
+	*Start Camera
+	3000 run com.sec.android.app.camera
+	*Reset Camera
+	2000 click d="(?i)Quick controls"
+	2000 click t="(?i)Go to Settings"
+	1000 scroll v f
+	500 scroll v f
+	1000 click t="(?i)Reset settings"
+	2000 click t="(?i)Reset"  
+	
+	*Change Resolution to 200M
+	3000 click d="(?i)Resolution"
+	1000 click t="(?i)BACK_CAMERA_PICTURE_SIZE_ULTRA_HIGH"
+	
+	*Change Ratio to 3:4
+	2000 click d="(?i)Quick controls"
+	2000 click t="(?i)Ratio"
+	1000 click t="(?i)BACK_CAMERA_PICTURE_RATIO_NORMAL"
+	2000 press back
+	
+	*Change Zoom to 5x
+	2000 click t="(?i)1"
+	2000 click t="(?i)5"
+	
+	*Capture image and quick view
+	sleep 2000 
+	for 10
+		2000 click d="(?i)Take picture"
+	end
+	sleep 2000 
+	5000 click res=com.sec.android.app.camera:id/quick_view_button_layout
+	for 10
+		2000 scroll h f
+	end
+	3000 press back
+	2000 press home
+
+
+#PHOTO MODE: Capture images with 200M resolutions, ratio 3:4, zoom 10x
+*Application: Camera
+*Description: Take picture in low light with 200M resolutions, ratio 3:4, zoom 10x and quick view, detect issue Image distortion during night photography
+*Unit precondition: 
+   *-SIM:
+   *-Wifi connect: yes
+   *-Account: 
+   *-User-data: 
+   *-APK install: 
+   *-Other: Capture image in Ultra-low light 0.5lux or less
+*Time: 2
+
+	doshell date | tr '\n' ' '  >> /sdcard/ACT_LOGS/testlog_Aging.txt  ; echo "/ Capture images with 200M resolutions, ratio 3:4, zoom 10x \c" >> /sdcard/ACT_LOGS/testlog_Aging.txt
+	
+	*Start Camera
+	3000 run com.sec.android.app.camera
+	*Reset Camera
+	2000 click d="(?i)Quick controls"
+	2000 click t="(?i)Go to Settings"
+	1000 scroll v f
+	500 scroll v f
+	1000 click t="(?i)Reset settings"
+	2000 click t="(?i)Reset"  
+	
+	*Change Resolution to 200M
+	3000 click d="(?i)Resolution"
+	1000 click t="(?i)BACK_CAMERA_PICTURE_SIZE_ULTRA_HIGH"
+	
+	*Change Ratio to 3:4
+	2000 click d="(?i)Quick controls"
+	2000 click t="(?i)Ratio"
+	1000 click t="(?i)BACK_CAMERA_PICTURE_RATIO_NORMAL"
+	2000 press back
+	
+	*Change Zoom to 10x
+	2000 click t="(?i)1"
+	2000 click t="(?i)10"
+	
+	*Capture image and quick view
+	sleep 2000 
+	for 10
+		2000 click d="(?i)Take picture"
+	end
+	sleep 2000 
+	5000 click res=com.sec.android.app.camera:id/quick_view_button_layout
+	for 10
+		2000 scroll h f
+	end
+	3000 press back
+	2000 press home
+
+*********END SCENARIO**************
+

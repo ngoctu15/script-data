@@ -1,0 +1,85 @@
+*Description:
+*P250306-03233_There is an animation bug/error when I open Google Chrome or Google Messages and swipe back and swipe up and hold to enter into background task, the animation will jump randomly_predictive back animation error
+
+$SPenErrorDetect false
+$ResetErrorDetect true
+$AllowDeepSleep true
+$StorageFullDetect true
+$FullcapUpload true
+
+$BatteryChargeOption false
+$ChargeRepeatCnt 4
+$ChargeEnableLv 10
+$ChargeDiableLv 100
+$BatteryChargeFull false
+$StopLvBattery 100
+$BatteryEndLevel 10
+$PauseCharge false
+$BatteryDropDetectLv 15
+
+$AutoStart false
+$ACTWatchCat true
+$ACTWatchCatInterval 120000
+$ErrorDetect false
+$IgnoreError true
+$ShakeAction true
+$ContinueTestWhenErrorDetected true
+$TopLayerScriptView true
+$DelayTimeAfterReboot 5000
+
+$PointerLocation false
+$SaveScreenshot false
+$SaveResultAlways true
+$USBWarning false
+$LcdErrorDetect 10
+$ABCFaultDetect true
+$IgnoreBootTimeFail false
+
+$PageFaultDetect true
+$ShowChargeType false
+$AutomationReboot true
+$ShowScriptFileName true
+$ShakeActionSensitivity 1500
+$RebootWhenErrorOccurs false
+$NotificationCheck false
+$ThermistorDetect true
+$TAWarning false
+$WaitChargeOption true
+
+$ANRDetect false
+$CameraErrorDetect true
+$CrashDetect true
+$SamsungPKGErrorDetect true
+$ShakeActionBrightness 130
+
+#Run app & scroll screen (10)
+*Application: Chrome, Messages
+*Description: open chrome, messages and scroll the screen to detect animation bug/error
+*Unit precondition: 
+   *-SIM:
+   *-Wifi connect:
+   *-Account:
+   *-User-data: 
+   *-APK install:
+   *-Other:
+*Time: 5
+
+for 10
+	2000 run Chrome
+	3000 press home
+	500 scroll h f
+	500 scroll v f
+	2000 run Messages
+	3000 press home
+	500 scroll h f
+	500 scroll v f
+	2000 run Chrome
+	500 scroll h f
+	500 scroll v f
+	2000 run Messages
+	500 scroll h f
+	500 scroll v f
+	3000 press APP_SWITCH
+	3000 click t="Close all"
+end
+

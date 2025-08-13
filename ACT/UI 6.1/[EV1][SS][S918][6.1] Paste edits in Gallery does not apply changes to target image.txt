@@ -1,0 +1,139 @@
+*Description:
+*P250212-07238_"paste edits" does not apply change to target image_Don't update effect value after pasting from Gallery side
+
+
+$SPenErrorDetect false
+$ResetErrorDetect true
+$AllowDeepSleep true
+$StorageFullDetect true
+$FullcapInterval 60
+$BatteryChargeOption false
+$ChargeRepeatCnt 400
+$ChargeEnableLv 15
+$ChargeDiableLv 100
+$BatteryChargeFull false
+$StopLvBattery 100
+$BatteryEndLevel 2
+$PauseCharge false
+$BatteryDropDetectLv 2
+$AutoStart false
+$ACTWatchCat false
+$ACTWatchCatInterval 120000
+$ErrorDetect false
+$IgnoreError true
+$ShakeAction true
+$ContinueTestWhenErrorDetected true
+$TopLayerScriptView true
+$DelayTimeAfterReboot 5000
+$PointerLocation false
+$SaveScreenshot true
+$SaveResultAlways true
+$USBWarning false
+$LcdErrorDetect 10
+$ABCFaultDetect true
+$IgnoreBootTimeFail true
+$PageFaultDetect true
+$isWaitTimeWhenFullChargeOption false
+$ShowChargeType false
+$AutomationReboot true
+$ShowScriptFileName true
+$ShakeActionSensitivity 1500
+$RebootWhenErrorOccurs false
+$NotificationCheck false
+$ThermistorDetect true
+$TAWarning false
+$SpenSaveAlways false
+$WaitChargeOption false
+$CloseActSessions true
+$TemperatureDetection 43
+$ANRDetect false
+$CameraErrorDetect true
+$CrashDetect true
+$SamsungPKGErrorDetect true
+$ShakeActionBrightness 130
+$WifiFwCrashDetect true
+$BGCPUDetect true
+
+
+********INPUT SCENARIO************
+
+#paste effect to 1 image
+*Application: Gallery, Photo editor
+*Description: paste effect to 1 image, detect issue "paste edits" does not apply change to target image
+*Unit precondition: 
+   *-SIM:
+   *-Wifi connect: yes
+   *-Account: 
+   *-User-data: exist photos in Gallery app
+   *-APK install:
+   *-Other: 
+*Time: 0.54
+
+	doshell date | tr '\n' ' '  >> /sdcard/ACT_LOGS/testlog_Aging.txt  ; echo "/ Edit photos and paste effect to 1 image \c" >> /sdcard/ACT_LOGS/testlog_Aging.txt
+	
+	2000 run Gallery
+	2000 click res=com.sec.android.gallery3d:id/thumbnail
+	1000 click d="(?i)Edit"
+	1000 click res=com.sec.android.mimage.photoretouching:id/effects
+	2000 touch down 878 1808
+	50 touch move 700 1808
+	50 touch move 550 1808
+	50 touch move 450 1808
+	50 touch up 371 1808
+	2000 click res=com.sec.android.mimage.photoretouching:id/action_bar_save
+	2000 click t="(?i)Save"
+	2000 click d="(?i)More options"
+	2000 click t="(?i)Copy edits"  
+	2000 scroll h f
+	2000 click d="(?i)More options"
+	2000 click t="(?i)Paste edits"  
+	* 2000 scroll2 res="com.sec.android.mimage.photoretouching:id/effect_touch_area" ori=h dir=b size_down=0.5 size_up=0.1
+	10000 press home
+
+
+
+#paste effect to some images
+*Application: Gallery, Photo editor
+*Description: paste effect to some images, detect issue "paste edits" does not apply change to target image
+*Unit precondition: 
+   *-SIM:
+   *-Wifi connect: yes
+   *-Account: 
+   *-User-data: exist photos in Gallery app
+   *-APK install:
+   *-Other: 
+*Time: 1
+
+	doshell date | tr '\n' ' '  >> /sdcard/ACT_LOGS/testlog_Aging.txt  ; echo "/ Edit photos and paste effect some images\c" >> /sdcard/ACT_LOGS/testlog_Aging.txt
+	
+	2000 run Gallery
+	2000 click res=com.sec.android.gallery3d:id/thumbnail
+	1000 click d="(?i)Edit"
+	1000 click res=com.sec.android.mimage.photoretouching:id/effects
+	2000 touch down 878 1808
+	50 touch move 700 1808
+	50 touch move 550 1808
+	50 touch move 450 1808
+	50 touch up 371 1808
+	2000 click res=com.sec.android.mimage.photoretouching:id/action_bar_save
+	2000 click t="(?i)Save"
+	2000 click d="(?i)More options"
+	2000 click t="(?i)Copy edits"
+	2000 press back
+
+	*paste edits to some images
+	2000 click d="(?i)More options"
+	2000 click t="(?i)Edit"
+	2000 touch down 150 904
+	50 touch move 300 904
+	50 touch move 550 904
+	50 touch move 750 904
+	50 touch up 930 904
+	2000 click t="(?i)More"
+	2000 click t="(?i)Paste edits"
+	2000 click res=com.sec.android.gallery3d:id/thumbnail
+	10000 press home
+	
+*********END SCENARIO**************	
+
+  

@@ -1,0 +1,151 @@
+﻿*Description:
+*P250202-00373_My file suddenly stopped when i trying to check for details of some files through the internal storage_Fix logic for IndexOutOfBounds.
+
+$SPenErrorDetect false
+$ResetErrorDetect true
+$AllowDeepSleep true
+$StorageFullDetect true
+$FullcapInterval 60
+$BatteryChargeOption false
+$ChargeRepeatCnt 400
+$ChargeEnableLv 15
+$ChargeDiableLv 100
+$BatteryChargeFull false
+$StopLvBattery 100
+$BatteryEndLevel 2
+$PauseCharge false
+$BatteryDropDetectLv 2
+$AutoStart false
+$ACTWatchCat false
+$ACTWatchCatInterval 120000
+$ErrorDetect false
+$IgnoreError true
+$ShakeAction true
+$ContinueTestWhenErrorDetected true
+$TopLayerScriptView true
+$DelayTimeAfterReboot 5000
+$PointerLocation false
+$SaveScreenshot true
+$SaveResultAlways true
+$USBWarning false
+$LcdErrorDetect 10
+$ABCFaultDetect true
+$IgnoreBootTimeFail true
+$PageFaultDetect true
+$isWaitTimeWhenFullChargeOption false
+$ShowChargeType false
+$AutomationReboot true
+$ShowScriptFileName true
+$ShakeActionSensitivity 1500
+$RebootWhenErrorOccurs false
+$NotificationCheck false
+$ThermistorDetect true
+$TAWarning false
+$SpenSaveAlways false
+$WaitChargeOption false
+$CloseActSessions true
+$TemperatureDetection 43
+$ANRDetect false
+$CameraErrorDetect true
+$CrashDetect true
+$SamsungPKGErrorDetect true
+$ShakeActionBrightness 130
+$WifiFwCrashDetect true
+$BGCPUDetect true
+
+#My file
+*Application: My file
+*Description: My file suddenly stopped when i trying to check for details of some files through the internal storage. My files> Image categories> select All/Some files > More> select Detail > OK (performed about 30 times) > obs
+*Unit precondition: 
+   *-SIM:
+   *-Wifi connect:
+   *-Account:
+   *-User-data: photo, video
+   *-APK install:
+   *-Other: 
+*Time: 10
+
+3000 change_lang ENGLISH
+10000
+run com.sec.android.app.camera
+3000 
+if click t="PHOTO"
+3000
+end
+for 10
+3000 press camera
+end
+
+3000 
+if click t="VIDEO"
+3000
+end
+for 10
+if click d="Start recording"
+3000
+end
+10000
+if click d="Stop recording"
+3000
+end
+end
+3000 loadlibrary back_to_home
+
+5000 run My Files
+3000 click t = "Images"
+*Must modify (long press to select files)
+for 30
+3000 
+1000 touch down 150 690
+1000 tap 410 690
+1000 tap 670 690
+1000 tap 930 690
+1000 tap 150 950
+1000 tap 410 950
+1000 tap 670 950
+1000 tap 930 950
+3000 click t = "More"
+3000 click t = "Details"
+*check image
+3000 click t = "OK"
+3000 press back
+end
+loadlibrary back_to_home
+5000 run My Files
+3000 click t = "Videos"
+*Must modify (long press to select files)
+for 30
+3000 
+1000 touch down 150 690
+1000 tap 410 690
+1000 tap 670 690
+1000 tap 930 690
+1000 tap 150 950
+1000 tap 410 950
+1000 tap 670 950
+1000 tap 930 950
+3000 click t = "More"
+3000 click t = "Details"
+*check image
+3000 click t = "OK"
+3000 press back
+end
+5000 loadlibrary back_to_home
+
+*******Library*******
+@back_to_home
+for 5 
+500 press back
+end
+
+@scroll_down_to_up
+10 mtouch 0 1 [ 0 900 1700 s=0.0200 ]
+40 mtouch 2 1 [ 0 900 1620 s=0.0200 ]
+40 mtouch 2 1 [ 0 900 1540 s=0.0200 ]
+40 mtouch 2 1 [ 0 900 1460 s=0.0200 ]
+40 mtouch 2 1 [ 0 900 1380 s=0.0200 ]
+40 mtouch 2 1 [ 0 900 1300 s=0.0200 ]
+40 mtouch 2 1 [ 0 900 1220 s=0.0200 ]
+40 mtouch 2 1 [ 0 900 1140 s=0.0200 ]
+40 mtouch 2 1 [ 0 900 1060 s=0.0200 ]
+40 mtouch 1 1 [ 0 900 1000 s=0.0200 ]

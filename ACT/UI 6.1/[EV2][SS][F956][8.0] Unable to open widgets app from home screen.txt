@@ -1,0 +1,95 @@
+﻿*Description:
+*P250102-00594_Unable to open Widgets app from Home Screen
+
+$SPenErrorDetect false
+$ResetErrorDetect true
+$AllowDeepSleep true
+$StorageFullDetect true
+$FullcapInterval 60
+$BatteryChargeOption false
+$ChargeRepeatCnt 400
+$ChargeEnableLv 15
+$ChargeDiableLv 100
+$BatteryChargeFull false
+$StopLvBattery 100
+$BatteryEndLevel 2
+$PauseCharge false
+$BatteryDropDetectLv 2
+$AutoStart false
+$ACTWatchCat false
+$ACTWatchCatInterval 120000
+$ErrorDetect false
+$IgnoreError true
+$ShakeAction true
+$ContinueTestWhenErrorDetected true
+$TopLayerScriptView true
+$DelayTimeAfterReboot 5000
+$PointerLocation false
+$SaveScreenshot true
+$SaveResultAlways true
+$USBWarning false
+$LcdErrorDetect 10
+$ABCFaultDetect true
+$IgnoreBootTimeFail true
+$PageFaultDetect true
+$isWaitTimeWhenFullChargeOption false
+$ShowChargeType false
+$AutomationReboot true
+$ShowScriptFileName true
+$ShakeActionSensitivity 1500
+$RebootWhenErrorOccurs false
+$NotificationCheck false
+$ThermistorDetect true
+$TAWarning false
+$SpenSaveAlways false
+$WaitChargeOption false
+$CloseActSessions true
+$TemperatureDetection 43
+$ANRDetect false
+$CameraErrorDetect true
+$CrashDetect true
+$SamsungPKGErrorDetect true
+$ShakeActionBrightness 130
+$WifiFwCrashDetect true
+$BGCPUDetect true
+
+#Home Screen
+*Application: Home Screen
+*Description: P250102-00594 Unable to open Widgets app from Home Screen >> Crash while Edit Widgets. Home screen > Edit Widgets by longpress Home
+*Unit precondition: 
+   *-SIM:
+   *-Wifi connect:
+   *-Account:
+   *-User-data: 
+   *-APK install:
+   *-Other: Home screen free space
+*Time: 3
+
+3000 change_lang ENGLISH
+10000 
+press Home
+3000 
+mtouch 0 1 [ 0 500 700 s=3000 ]
+3000
+if click t="Widgets"
+3000
+end
+3000 loadlibrary back_to_home 
+
+*******Library*******
+@back_to_home
+for 5 
+500 press back
+end
+
+@scroll_down_to_up
+10 mtouch 0 1 [ 0 900 1700 s=0.0200 ]
+40 mtouch 2 1 [ 0 900 1620 s=0.0200 ]
+40 mtouch 2 1 [ 0 900 1540 s=0.0200 ]
+40 mtouch 2 1 [ 0 900 1460 s=0.0200 ]
+40 mtouch 2 1 [ 0 900 1380 s=0.0200 ]
+40 mtouch 2 1 [ 0 900 1300 s=0.0200 ]
+40 mtouch 2 1 [ 0 900 1220 s=0.0200 ]
+40 mtouch 2 1 [ 0 900 1140 s=0.0200 ]
+40 mtouch 2 1 [ 0 900 1060 s=0.0200 ]
+40 mtouch 1 1 [ 0 900 1000 s=0.0200 ]

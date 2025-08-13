@@ -1,0 +1,116 @@
+*Description:
+*P250202-00394_Device becomes frozen and hot when using camera and playing games after updating the new software_getMode delay prevention modifications
+
+$SPenErrorDetect false
+$ResetErrorDetect true
+$AllowDeepSleep true
+$StorageFullDetect true
+$FullcapInterval 60
+$BatteryChargeOption false
+$ChargeRepeatCnt 400
+$ChargeEnableLv 15
+$ChargeDiableLv 100
+$BatteryChargeFull false
+$StopLvBattery 100
+$BatteryEndLevel 2
+$PauseCharge false
+$BatteryDropDetectLv 2
+$AutoStart false
+$ACTWatchCat false
+$ACTWatchCatInterval 120000
+$ErrorDetect false
+$IgnoreError true
+$ShakeAction true
+$ContinueTestWhenErrorDetected true
+$TopLayerScriptView true
+$DelayTimeAfterReboot 5000
+$PointerLocation false
+$SaveScreenshot true
+$SaveResultAlways true
+$USBWarning false
+$LcdErrorDetect 10
+$ABCFaultDetect true
+$IgnoreBootTimeFail true
+$PageFaultDetect true
+$isWaitTimeWhenFullChargeOption false
+$ShowChargeType false
+$AutomationReboot true
+$ShowScriptFileName true
+$ShakeActionSensitivity 1500
+$RebootWhenErrorOccurs false
+$NotificationCheck false
+$ThermistorDetect true
+$TAWarning false
+$SpenSaveAlways false
+$WaitChargeOption false
+$CloseActSessions true
+$TemperatureDetection 43
+$ANRDetect false
+$CameraErrorDetect true
+$CrashDetect true
+$SamsungPKGErrorDetect true
+$ShakeActionBrightness 130
+$WifiFwCrashDetect true
+$BGCPUDetect true
+
+#Run Camera & Game
+*Application: Camera
+*Description: using camera and playing games to detect phone freeze issue
+*Unit precondition: 
+   *-SIM:
+   *-Wifi connect: yes 
+   *-Account:
+   *-User-data: 
+   *-APK install: yes
+   *-Other:
+*Time: 7.5
+
+	2000 run Camera
+	2000 click t="\QVIDEO\E"
+	2000 click res=com.sec.android.app.camera:id/center_button_border_stroke_image
+	sleep 180000
+	2000 click res=com.sec.android.app.camera:id/stop_button
+	2000 click t="\QPHOTO\E"
+	for 5
+		2000 click res=com.sec.android.app.camera:id/right_button_bg
+		2000 click res=com.sec.android.app.camera:id/normal_center_button
+	end
+	2000 press home
+	3000 uninstall com.hgamesartworks.mechmp
+	10000 install /sdcard/AppTest/com.hgamesartworks.mechmp.apk
+	20000 press home
+	2000 run Real Mech Robot - Steel War 3D
+	sleep 2000
+	
+	1000 grant_permission ALL
+	2000 run com.hgamesartworks.mechmp	
+	if click exists t="This app isn't compatible with the latest version of Android. Check for an update or contact the app's developer."
+	2000 click t="OK"
+	end
+	sleep 2000
+	if click exists t="This app was built for an older version of Android. It might not work properly and doesn't include the latest security and privacy protections. Check for an update or contact the app's developer."
+	2000 click t="OK"
+	end
+
+	3000 click t="(?i)(Allow)"	
+	3000 click t="(?i)(Allow)"	
+	2000 loadlibrary remove_pop_up
+	5000 tap 1200 150	*play offline
+	5000 tap 815 630   *choose/exit
+	loadlibrary Check_charging_status_to_sleep
+	2000 run com.hgamesartworks.mechmp
+	90000 press back
+	5000 tap 815 630   *choose/exit
+	5000 tap 1200 150	*play offline
+	5000 tap 815 630  *choose/exit
+	2000 press back
+	5000 tap 815 630   *choose/exit
+	
+	1000 press back
+	1000 press back
+	1000 press back
+	1000 press back
+	1000 press home
+
+
+

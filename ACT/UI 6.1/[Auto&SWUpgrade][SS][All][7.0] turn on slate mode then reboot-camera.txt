@@ -1,0 +1,72 @@
+$IgnoreError true
+#Pre_Slate_On_Off
+*Application: Slate mode
+*Description: using slate mode to disable charging
+*Unit precondition:
+   *-SIM:
+   *-Wifi connect:
+   *-Account:
+   *-User-data:
+   *-APK install:
+   *-Other:
+*Time: 0.5
+
+doshell echo $(date +%Y-%m-%d" "%H:%M:%S)" ("$(cat /sys/class/power_supply/battery/capacity)") - Pre_Slate_On_Off(20) " >> /sdcard/ACT_LOGS/testlog_dev_AUT.txt
+2000 doshell echo 1 > /sys/class/power_supply/battery/batt_slate_mode
+1000 press home
+
+#Reboot_repeat (5)
+*Application: Reboot
+*Description: Reboot then turn on/off WIFI, Bluetooth
+*Unit precondition:
+   *-SIM:
+   *-Wifi connect:
+   *-Account:
+   *-User-data:
+   *-APK install:
+   *-Other:
+*Time: 10
+doshell echo $(date +%Y-%m-%d" "%H:%M:%S.%3N)" ("$(cat /sys/class/power_supply/battery/capacity)") - Pre_Reboot_Repeat_Wifi" >> /sdcard/ACT_LOGS/testlog_dev_AUT.txt
+5000 press home
+5000 reboot
+120000 press home
+5000 press home
+3000 wifi on
+5000 wifi on check
+3000 wifi off
+5000 wifi off check
+3000 bluetooth on
+3000 bluetooth on check
+3000 bluetooth on
+5000 bluetooth off
+2000 press home
+
+
+#Camera
+*Application: Camera 
+*Description: Open camera, take picture and recording
+*Unit precondition:
+   *-SIM:
+   *-Wifi connect:
+   *-Account:
+   *-User-data:
+   *-APK install:
+   *-Other:
+*Time: 2
+doshell echo $(date +%Y-%m-%d" "%H:%M:%S.%3N)" ("$(cat /sys/class/power_supply/battery/capacity)") - Camera-reboot" >> /sdcard/ACT_LOGS/testlog_dev_AUT.txt
+3000 run com.sec.android.app.camera
+3000 click t="(?i)PORTRAIT"
+2000 tap center
+3000 click d="(?i)(Take picture)"
+3000 click t="(?i)PHOTO"
+2000 tap center
+3000 click d="(?i)(Take picture)"
+3000 click t="(?i)VIDEO"
+3000 click d="(?i)Start recording"
+5000 click d="(?i)Stop recording"
+5000 press back
+3000 press back
+3000 press home
+5000 reboot
+5000 press back
+3000 rmusagestats

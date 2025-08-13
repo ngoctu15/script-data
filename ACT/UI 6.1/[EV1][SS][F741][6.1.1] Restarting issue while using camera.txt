@@ -1,0 +1,89 @@
+*Description:
+*P241003-03012_Restarting issue while using camera_When RemosaicMFHDR is triggered, some logic at AE, AEC process does not read metadata info when requestId < pipelineDelay
+
+$SPenErrorDetect false
+$ResetErrorDetect true
+$AllowDeepSleep true
+$StorageFullDetect true
+$FullcapInterval 60
+$BatteryChargeOption false
+$ChargeRepeatCnt 400
+$ChargeEnableLv 15
+$ChargeDiableLv 100
+$BatteryChargeFull false
+$StopLvBattery 100
+$BatteryEndLevel 2
+$PauseCharge false
+$BatteryDropDetectLv 2
+$AutoStart false
+$ACTWatchCat false
+$ACTWatchCatInterval 120000
+$ErrorDetect false
+$IgnoreError true
+$ShakeAction true
+$ContinueTestWhenErrorDetected true
+$TopLayerScriptView true
+$DelayTimeAfterReboot 5000
+$PointerLocation false
+$SaveScreenshot true
+$SaveResultAlways true
+$USBWarning false
+$LcdErrorDetect 10
+$ABCFaultDetect true
+$IgnoreBootTimeFail true
+$PageFaultDetect true
+$isWaitTimeWhenFullChargeOption false
+$ShowChargeType false
+$AutomationReboot true
+$ShowScriptFileName true
+$ShakeActionSensitivity 1500
+$RebootWhenErrorOccurs false
+$NotificationCheck false
+$ThermistorDetect true
+$TAWarning false
+$SpenSaveAlways false
+$WaitChargeOption false
+$CloseActSessions true
+$TemperatureDetection 43
+$ANRDetect false
+$CameraErrorDetect true
+$CrashDetect true
+$SamsungPKGErrorDetect true
+$ShakeActionBrightness 130
+$WifiFwCrashDetect true
+$BGCPUDetect true
+
+
+********INPUT SCENARIO************
+
+#Capture continuous 100 times
+*Application: Camera
+*Description: Take picture and quick view, detect Restarting issue while using camera
+*Unit precondition: 
+   *-SIM:
+   *-Wifi connect: 
+   *-Account: 
+   *-User-data: 
+   *-APK install:
+   *-Other: Capture in low light and normal light
+*Time: 9
+
+
+doshell date | tr '\n' ' '  >> /sdcard/ACT_LOGS/testlog_Aging.txt  ; echo "/ Capture continuous 100 times \c" >> /sdcard/ACT_LOGS/testlog_Aging.txt
+
+3000 run com.sec.android.app.camera
+if click clickable_exists d="(?i)Switch to rear camera"
+	3000 click d="(?i)Switch to rear camera"
+end
+for 100
+	3000 click d="(?i)Take picture"
+end
+5000 click res=com.sec.android.app.camera:id/quick_view_button_layout
+for 100
+	2000 scroll h f
+end
+3000 press back
+3000 press home
+
+
+*********END SCENARIO**************

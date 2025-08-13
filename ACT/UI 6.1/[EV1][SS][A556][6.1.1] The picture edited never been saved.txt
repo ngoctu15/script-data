@@ -1,0 +1,115 @@
+*Description:
+*P250225-03679_Photo editing takes time to save and the picture edited never been saved_Use immutable bitmaps for Spread Animation
+
+$SPenErrorDetect false
+$ResetErrorDetect true
+$AllowDeepSleep true
+$StorageFullDetect true
+$FullcapInterval 60
+$BatteryChargeOption false
+$ChargeRepeatCnt 400
+$ChargeEnableLv 15
+$ChargeDiableLv 100
+$BatteryChargeFull false
+$StopLvBattery 100
+$BatteryEndLevel 2
+$PauseCharge false
+$BatteryDropDetectLv 2
+$AutoStart false
+$ACTWatchCat false
+$ACTWatchCatInterval 120000
+$ErrorDetect false
+$IgnoreError true
+$ShakeAction true
+$ContinueTestWhenErrorDetected true
+$TopLayerScriptView true
+$DelayTimeAfterReboot 5000
+$PointerLocation false
+$SaveScreenshot true
+$SaveResultAlways true
+$USBWarning false
+$LcdErrorDetect 10
+$ABCFaultDetect true
+$IgnoreBootTimeFail true
+$PageFaultDetect true
+$isWaitTimeWhenFullChargeOption false
+$ShowChargeType false
+$AutomationReboot true
+$ShowScriptFileName true
+$ShakeActionSensitivity 1500
+$RebootWhenErrorOccurs false
+$NotificationCheck false
+$ThermistorDetect true
+$TAWarning false
+$SpenSaveAlways false
+$WaitChargeOption false
+$CloseActSessions true
+$TemperatureDetection 43
+$ANRDetect false
+$CameraErrorDetect true
+$CrashDetect true
+$SamsungPKGErrorDetect true
+$ShakeActionBrightness 130
+$WifiFwCrashDetect true
+$BGCPUDetect true
+
+
+********INPUT SCENARIO************
+		
+#Edit motion photo
+*Application: Gallery, Photo editor
+*Description: Edit motion photo, detect issue it takes so long to save edited motion photo and it eventually doesn't even save
+*Unit precondition: 
+   *-SIM:
+   *-Wifi connect: 
+   *-Account: Samsung Account
+   *-User-data: motion photos
+   *-APK install:
+   *-Other: 
+*Time: 16
+
+
+doshell date | tr '\n' ' '  >> /sdcard/ACT_LOGS/testlog_Aging.txt  ; echo "/ Edit motion photo \c" >> /sdcard/ACT_LOGS/testlog_Aging.txt
+
+2000 run Gallery
+1000 click d="(?i)Search"
+2000 click t="(?i)Motion photo" 
+2000 scroll v b 
+2000 click res=com.sec.android.gallery3d:id/thumbnail	
+for 10
+	1000 click d="(?i)Edit" 
+	2000 click res=com.sec.android.mimage.photoretouching:id/tone
+	2000 click res=com.sec.android.mimage.photoretouching:id/light_balance_icon
+	2000 scroll2 res="com.sec.android.mimage.photoretouching:id/tone_dialer_parent_layout" ori=h dir=f size_down=0.5 size_up=0.1
+	2000 click res=com.sec.android.mimage.photoretouching:id/brightness_icon
+	2000 scroll2 res="com.sec.android.mimage.photoretouching:id/tone_dialer_parent_layout" ori=h dir=b size_down=0.5 size_up=0.1
+	2000 click res=com.sec.android.mimage.photoretouching:id/exposure_icon
+	2000 scroll2 res="com.sec.android.mimage.photoretouching:id/tone_dialer_parent_layout" ori=h dir=f size_down=0.5 size_up=0.1
+	2000 click res=com.sec.android.mimage.photoretouching:id/contrast_icon
+	2000 scroll2 res="com.sec.android.mimage.photoretouching:id/tone_dialer_parent_layout" ori=h dir=b size_down=0.5 size_up=0.1
+	2000 click res=com.sec.android.mimage.photoretouching:id/highlight_icon
+	2000 scroll2 res="com.sec.android.mimage.photoretouching:id/tone_dialer_parent_layout" ori=h dir=f size_down=0.5 size_up=0.1
+	2000 click res=com.sec.android.mimage.photoretouching:id/shadow_icon
+	2000 scroll2 res="com.sec.android.mimage.photoretouching:id/tone_dialer_parent_layout" ori=h dir=b size_down=0.5 size_up=0.1
+	2000 click res=com.sec.android.mimage.photoretouching:id/saturation_icon
+	2000 scroll2 res="com.sec.android.mimage.photoretouching:id/tone_dialer_parent_layout" ori=h dir=f size_down=0.5 size_up=0.1
+	2000 click res=com.sec.android.mimage.photoretouching:id/tint_icon
+	2000 scroll2 res="com.sec.android.mimage.photoretouching:id/tone_dialer_parent_layout" ori=h dir=b size_down=0.5 size_up=0.1
+	2000 click res=com.sec.android.mimage.photoretouching:id/temperature_icon
+	2000 scroll2 res="com.sec.android.mimage.photoretouching:id/tone_dialer_parent_layout" ori=h dir=f size_down=0.5 size_up=0.1
+	2000 click res=com.sec.android.mimage.photoretouching:id/sharpness_icon
+	2000 scroll2 res="com.sec.android.mimage.photoretouching:id/tone_dialer_parent_layout" ori=h dir=b size_down=0.5 size_up=0.1
+	2000 click res=com.sec.android.mimage.photoretouching:id/definitation_icon
+	2000 scroll2 res="com.sec.android.mimage.photoretouching:id/tone_dialer_parent_layout" ori=h dir=f size_down=0.5 size_up=0.1
+
+	2000 click res=com.sec.android.mimage.photoretouching:id/action_bar_save
+	2000 click t="(?i)Save"
+	2000 scroll h f
+end
+3000 press back	
+3000 press home
+
+doshell date | tr '\n' ' '  >> /sdcard/ACT_LOGS/testlog_Aging.txt  ; echo "/ Edit motion photo \c" >> /sdcard/ACT_LOGS/testlog_Aging.txt
+
+*********END SCENARIO**************
+

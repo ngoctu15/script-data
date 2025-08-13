@@ -1,0 +1,39 @@
+#Start power key repeat
+*Application: Sleep wakeup 
+*Description: Press power key each (2s, 5s, 10s, 30s, 60s) to sleep wakeup 
+*Unit precondition:
+   *-SIM:
+   *-Wifi connect:
+   *-Account:
+   *-User-data:
+   *-APK install:
+   *-Other:
+*Time: 0.5
+	doshell date | tr '\n' ' '  >> /sdcard/ACT_LOGS/testlog_Aging.txt  ; echo "/ *******#Start power key 10s******* \c" >> /sdcard/ACT_LOGS/testlog_Aging.txt
+	for 5
+		2000 press power
+	end 
+	
+	for 5
+		5000 press power
+	end 
+	
+	for 5
+		10000 press power
+	end 
+	
+	for 5
+		15000 press power
+	end 
+	
+	for 5
+		30000 press power
+	end 
+	
+	for 5
+		60000 press power
+	end 
+	
+	for 5
+		300000 press power
+	end 

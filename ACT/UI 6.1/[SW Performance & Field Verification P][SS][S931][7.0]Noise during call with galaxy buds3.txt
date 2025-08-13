@@ -1,0 +1,70 @@
+*Description:
+*P250306-07115_The Galaxy Buds3 Pro''s LED lights, when activated during a call, produce a static noise in the earbuds_insufficient system resources_insufficient system resources
+
+$SPenErrorDetect false
+$ResetErrorDetect true
+$AllowDeepSleep true
+$StorageFullDetect true
+$FullcapUpload true
+
+$BatteryChargeOption false
+$ChargeRepeatCnt 4
+$ChargeEnableLv 10
+$ChargeDiableLv 100
+$BatteryChargeFull false
+$StopLvBattery 100
+$BatteryEndLevel 10
+$PauseCharge false
+$BatteryDropDetectLv 15
+
+$AutoStart false
+$ACTWatchCat true
+$ACTWatchCatInterval 120000
+$ErrorDetect false
+$IgnoreError true
+$ShakeAction true
+$ContinueTestWhenErrorDetected true
+$TopLayerScriptView true
+$DelayTimeAfterReboot 5000
+
+$PointerLocation false
+$SaveScreenshot false
+$SaveResultAlways true
+$USBWarning false
+$LcdErrorDetect 10
+$ABCFaultDetect true
+$IgnoreBootTimeFail false
+
+$PageFaultDetect true
+$ShowChargeType false
+$AutomationReboot true
+$ShowScriptFileName true
+$ShakeActionSensitivity 1500
+$RebootWhenErrorOccurs false
+$NotificationCheck false
+$ThermistorDetect true
+$TAWarning false
+$WaitChargeOption true
+
+$ANRDetect false
+$CameraErrorDetect true
+$CrashDetect true
+$SamsungPKGErrorDetect true
+$ShakeActionBrightness 130
+
+#Make call and check noise (10)
+*Application: Phone
+*Description: Connect buds & make call to detect noise
+*Unit precondition: 
+   *-SIM: yes
+   *-Wifi connect: 
+   *-Account:
+   *-User-data: 
+   *-APK install:
+   *-Other:
+*Time: 10
+for 10
+	3000 sendcall 0904402155
+	50000 endcall
+	1000 press home
+end

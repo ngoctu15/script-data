@@ -1,0 +1,48 @@
+$IgnoreError true
+
+#Photo_zoom_only
+*Application: Camera 
+*Description: Open camera and zoom, take picture 
+*Unit precondition:
+   *-SIM:
+   *-Wifi connect:
+   *-Account:
+   *-User-data:
+   *-APK install:
+   *-Other:
+*Time: 2
+
+	doshell date | tr '\n' ' '  >> /sdcard/ACT_LOGS/testlog_Aging.txt  ; echo "/ Photo_zoom_only : \c" >> /sdcard/ACT_LOGS/testlog_Aging.txt
+	2000 run com.sec.android.app.camera
+	if click exists d="(?i)(Switch to rear camera)"
+		500 click t="(?i)(Switch to rear camera)"
+	end
+	3000 click t="(?i)(PHOTO)"
+	5000 click t="(?i)(Ultra wide lens)"
+	5000 click t="(?i)(Wide.*angle lens)"
+	5000 click t="(?i)(Telephoto lens)"
+	5000 click t="(?i)(2)"
+	5000 click t="(?i)(3)"
+	5000 click t="(?i)(5)"
+	5000 click t="(?i)(10)"
+	5000 click t="(?i)(30)"
+	5000 click t="(?i)(100)"
+	2000 loadlibrary Take_picture
+	3000 press back 
+	3000 press back 
+	3000 press back 
+	3000 press back 
+	
+@Take_picture
+	if click exists t="(?i)(Take picture)"
+	500 click t="(?i)(Take picture)"
+	end
+	if click exists t="(?i)(Shutter)"	
+	500 click t="(?i)(Shutter)"	
+	end
+	if click exists d="(?i)(Take pictures)"	
+	500 click d="(?i)(Take pictures)"	
+	end
+	if click exists d="(?i)(Tap shutter to take picture)"
+	500 click d="(?i)(Tap shutter to take picture)"
+	end

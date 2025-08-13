@@ -1,0 +1,26 @@
+$IgnoreError true
+
+#youtube
+*Application: Youtube
+*Description: watch live video in youtube 
+*Unit precondition:
+   *-SIM:
+   *-Wifi connect: yes
+   *-Account:
+   *-User-data:
+   *-APK install:
+   *-Other:
+*Time: 11
+	doshell date | tr '\n' ' '  >> /sdcard/ACT_LOGS/testlog_Aging.txt  ; echo "/ *******#youtube_live******* \c" >> /sdcard/ACT_LOGS/testlog_Aging.txt		
+	2000 run YouTube
+	3000 scroll v b
+	3000 scroll v b
+	3000 click t="(?i)(live)"
+	3000 tap 500 700
+	sleep 600000
+	3000 press back
+	3000 press back
+	3000 press back
+	3000 press back
+
+		
